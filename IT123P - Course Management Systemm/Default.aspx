@@ -8,7 +8,7 @@
         <h3>Username</h3>
         <asp:TextBox ID="unameTB" runat="server"></asp:TextBox><br />
         <h3>Password</h3>
-        <asp:TextBox ID="pwordTB" runat="server"></asp:TextBox><br />
+        <asp:TextBox ID="pwordTB" runat="server" TextMode="Password"></asp:TextBox><br />
 
         <asp:Button id="login_id" runat="server" Text="Login" OnClick="login_id_Click"/>
     </div>

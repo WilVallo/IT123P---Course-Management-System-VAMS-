@@ -7,17 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace IT123P___Course_Management_Systemm
 {
-    public partial class Admin : System.Web.UI.MasterPage
+    public partial class Admin_Cors : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void logOutBtn_Click(object sender, EventArgs e)
-        {
-            Session.Abandon();
-            Response.Redirect("Default.aspx");
         }
     }
 }

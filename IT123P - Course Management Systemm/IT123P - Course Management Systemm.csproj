@@ -67,9 +67,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin_AddStudent.aspx" />
+    <Content Include="Admin_Studs.aspx" />
+    <Content Include="Admin_Cors.aspx" />
     <Content Include="Admin_Home.aspx" />
+    <Content Include="Admin_Profs.aspx" />
     <Content Include="App_Data\CMVMAS.mdb" />
+    <Content Include="CSS\admin.css" />
     <Content Include="Default.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -81,12 +84,19 @@
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
-    <Compile Include="Admin_AddStudent.aspx.cs">
-      <DependentUpon>Admin_AddStudent.aspx</DependentUpon>
+    <Compile Include="Admin_Studs.aspx.cs">
+      <DependentUpon>Admin_Studs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin_AddStudent.aspx.designer.cs">
-      <DependentUpon>Admin_AddStudent.aspx</DependentUpon>
+    <Compile Include="Admin_Studs.aspx.designer.cs">
+      <DependentUpon>Admin_Studs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_Cors.aspx.cs">
+      <DependentUpon>Admin_Cors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin_Cors.aspx.designer.cs">
+      <DependentUpon>Admin_Cors.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin_Home.aspx.cs">
       <DependentUpon>Admin_Home.aspx</DependentUpon>
@@ -94,6 +104,13 @@
     </Compile>
     <Compile Include="Admin_Home.aspx.designer.cs">
       <DependentUpon>Admin_Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_Profs.aspx.cs">
+      <DependentUpon>Admin_Profs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin_Profs.aspx.designer.cs">
+      <DependentUpon>Admin_Profs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

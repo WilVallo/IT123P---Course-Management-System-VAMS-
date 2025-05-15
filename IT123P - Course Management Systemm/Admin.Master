@@ -7,9 +7,18 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+
+    <link rel="stylesheet" href="CSS/admin.css" />
 </head>
 <body>
     <form id="form1" runat="server">
+        <header>
+            <a href = "Admin_Studs.aspx">Manage Students</a>
+            <a href = "Admin_Cors.aspx">Manage Courses</a>
+            <a href = "Admin_Profs.aspx">Manage Professors</a>
+            <asp:Button ID="logOutBtn" runat="server" OnClick="logOutBtn_Click" Width="100px" Text="Log Out"/>
+        </header>
+
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

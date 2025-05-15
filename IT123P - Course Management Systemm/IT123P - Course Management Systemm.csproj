@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin_Home.aspx" />
     <Content Include="App_Data\CMVMAS.mdb" />
     <Content Include="Default.aspx" />
     <Content Include="Web.config" />
@@ -74,9 +75,17 @@
   <ItemGroup>
     <Compile Include="Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_Home.aspx.cs">
+      <DependentUpon>Admin_Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin_Home.aspx.designer.cs">
+      <DependentUpon>Admin_Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -87,6 +96,7 @@
     </Compile>
     <Compile Include="Login_Portal.Master.cs">
       <DependentUpon>Login_Portal.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login_Portal.Master.designer.cs">
       <DependentUpon>Login_Portal.Master</DependentUpon>

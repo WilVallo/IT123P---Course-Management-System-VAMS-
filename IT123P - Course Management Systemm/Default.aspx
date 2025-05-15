@@ -9,6 +9,6 @@
         <h3>Password</h3>
         <asp:TextBox ID="pwordTB" runat="server"></asp:TextBox><br />
 
-        <asp:Button id="login_id" runat="server" Text="Login"/>
+        <asp:Button id="login_id" runat="server" Text="Login" OnClick="login_id_Click"/>
     </div>
 </asp:Content>

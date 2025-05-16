@@ -11,15 +11,18 @@ namespace IT123P___Course_Management_Systemm
 {
     public partial class Admin_AddStudent : System.Web.UI.Page
     {
-        string connstr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=";
         protected void Page_Load(object sender, EventArgs e)
         {
-            connstr += Server.MapPath("~/App_Data/CMVMAS.mdb");
-            LoadData();
+            string connstr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");
+            if (!IsPostBack)
+            {
+                LoadData();
+            }
         }
 
         public void LoadData()
         {
+            string connstr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");
             using (OleDbConnection conn = new OleDbConnection(connstr))
             {
                 string retrieve = "select count(studID) from student";
@@ -39,21 +42,22 @@ namespace IT123P___Course_Management_Systemm
 
         public void GenerateGridView()
         {
+            string connstr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");
             studentTable.DataSource = null;
             studentTable.DataBind();
 
-            if (!IsPostBack)
+            using (OleDbConnection conn = new OleDbConnection(connstr))
             {
-                using (OleDbConnection conn = new OleDbConnection(connstr))
-                {
-                    string retrieve = "select * from Student";
-                    OleDbDataAdapter da = new OleDbDataAdapter(retrieve, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                string retrieve = "select * from Student";
 
-                    studentTable.DataSource = dt;
-                    studentTable.DataBind();
-                }
+                conn.Open();
+                OleDbDataAdapter da = new OleDbDataAdapter(retrieve, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                studentTable.DataSource = dt;
+                studentTable.DataBind();
+                conn.Close();
             }
         }
 
@@ -66,7 +70,8 @@ namespace IT123P___Course_Management_Systemm
         }
 
         protected void confirm_Click(object sender, EventArgs e)
-        {   
+        {
+            string connstr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");
             using (OleDbConnection conn = new OleDbConnection(connstr))
             {
                 string id, first, last, em;
@@ -88,42 +93,57 @@ namespace IT123P___Course_Management_Systemm
 
                 conn.Close();
             }
-            GenerateGridView();
             ClearTextFields();
+            LoadData();
         }
 
-        protected void studentTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (studentTable.SelectedRow != null)
-            {
-                studID.Text = studentTable.SelectedRow.Cells[1].Text;
-                fname.Text = studentTable.SelectedRow.Cells[2].Text;
-                lname.Text = studentTable.SelectedRow.Cells[3].Text;
-                email.Text = studentTable.SelectedRow.Cells[4].Text;
-            }
-        }
 
         protected void clear_Click(object sender, EventArgs e)
         {
             ClearTextFields();
+            LoadData();
+            GenerateGridView();
+            delete.Enabled = false;
         }
 
         protected void delete_Click(object sender, EventArgs e)
         {
+            string connstr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");
+
             using (OleDbConnection conn = new OleDbConnection(connstr))
             {
-                string delete = $"delete from Accounts where AccID = '{studID.Text}'";
+                string deleteQuery = $"DELETE FROM Accounts WHERE AccID = '{studID.Text}'";
 
+                OleDbCommand cmd = new OleDbCommand(deleteQuery, conn);
                 conn.Open();
-                OleDbCommand cmd = new OleDbCommand(delete, conn);
                 cmd.ExecuteNonQuery();
 
-                delete = $"delete from Student where StudID = '{studID.Text}'";
-                cmd = new OleDbCommand(delete, conn);
-                cmd.ExecuteNonQuery();
+                deleteQuery = $"DELETE FROM Student WHERE StudID = '{studID.Text}'";
 
+                cmd = new OleDbCommand(deleteQuery, conn);
+                cmd.ExecuteNonQuery();
                 conn.Close();
             }
+
+            delete.Enabled = false;
+            ClearTextFields();
+            GenerateGridView();
+            LoadData();
+        }
+        protected void studentTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = studentTable.SelectedIndex;
+
+            if (selectedIndex == -1)
+            {
+                return;
+            }
+            studID.Text = studentTable.DataKeys[selectedIndex].Values["StudID"].ToString();
+            fname.Text = studentTable.DataKeys[selectedIndex].Values["Stud_fname"].ToString();
+            lname.Text = studentTable.DataKeys[selectedIndex].Values["Stud_lname"].ToString();
+            email.Text = studentTable.DataKeys[selectedIndex].Values["Email"].ToString();
+
+            delete.Enabled = true;
         }
     }
 }

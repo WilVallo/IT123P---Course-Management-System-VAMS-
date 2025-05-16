@@ -73,6 +73,7 @@
     <Content Include="Admin_Profs.aspx" />
     <Content Include="App_Data\CMVMAS.mdb" />
     <Content Include="CSS\admin.css" />
+    <Content Include="CSS\adminStuds.css" />
     <Content Include="Default.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>

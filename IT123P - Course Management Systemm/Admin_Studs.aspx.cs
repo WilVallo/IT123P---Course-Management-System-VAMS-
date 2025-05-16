@@ -12,12 +12,10 @@ namespace IT123P___Course_Management_Systemm
     public partial class Admin_AddStudent : System.Web.UI.Page
     {
         private Administrator admin;
-        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Instantiate admin with dummy info or based on login session
                 admin = new Administrator
                 {
                     ID = "ADMIN001",
@@ -81,7 +79,6 @@ namespace IT123P___Course_Management_Systemm
 
         protected void confirm_Click(object sender, EventArgs e)
         {
-            // Use Admin to demonstrate polymorphism and method call
             admin = new Administrator
             {
                 ID = "ADMIN001",

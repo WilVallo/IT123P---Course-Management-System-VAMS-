@@ -11,11 +11,21 @@ namespace IT123P___Course_Management_Systemm
 {
     public partial class Admin_AddStudent : System.Web.UI.Page
     {
+        private Administrator admin;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string connstr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");
             if (!IsPostBack)
             {
+                admin = new Administrator
+                {
+                    ID = "ADMIN001",
+                    FirstName = "Admin",
+                    LastName = "User",
+                    Permissions = "Full"
+                };
+
+                admin.AccessPortal();
+                admin.DisplayInfo();
                 LoadData();
             }
         }
@@ -23,20 +33,19 @@ namespace IT123P___Course_Management_Systemm
         public void LoadData()
         {
             string connstr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");
+
             using (OleDbConnection conn = new OleDbConnection(connstr))
             {
                 string retrieve = "select count(studID) from student";
 
                 conn.Open();
-
                 OleDbCommand cmd = new OleDbCommand(retrieve, conn);
                 int count = (int)cmd.ExecuteScalar();
                 count += 1;
-
                 studID.Text = DateTime.Now.Year.ToString() + count.ToString("D8");
-
                 conn.Close();
             }
+
             GenerateGridView();
         }
 
@@ -49,7 +58,6 @@ namespace IT123P___Course_Management_Systemm
             using (OleDbConnection conn = new OleDbConnection(connstr))
             {
                 string retrieve = "select * from Student";
-
                 conn.Open();
                 OleDbDataAdapter da = new OleDbDataAdapter(retrieve, conn);
                 DataTable dt = new DataTable();
@@ -71,14 +79,22 @@ namespace IT123P___Course_Management_Systemm
 
         protected void confirm_Click(object sender, EventArgs e)
         {
+            admin = new Administrator
+            {
+                ID = "ADMIN001",
+                FirstName = "Admin",
+                LastName = "User",
+                Permissions = "Full"
+            };
+            admin.ManageUserAccounts();
+
             string connstr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");
             using (OleDbConnection conn = new OleDbConnection(connstr))
             {
-                string id, first, last, em;
-                id = studID.Text.Trim();
-                first = fname.Text.Trim();
-                last = lname.Text.Trim();
-                em = email.Text.Trim();
+                string id = studID.Text.Trim();
+                string first = fname.Text.Trim();
+                string last = lname.Text.Trim();
+                string em = email.Text.Trim();
 
                 string insert = $"insert into student values ('{id}','{first}','{last}','{em}')";
 
@@ -93,10 +109,10 @@ namespace IT123P___Course_Management_Systemm
 
                 conn.Close();
             }
+
             ClearTextFields();
             LoadData();
         }
-
 
         protected void clear_Click(object sender, EventArgs e)
         {
@@ -113,13 +129,11 @@ namespace IT123P___Course_Management_Systemm
             using (OleDbConnection conn = new OleDbConnection(connstr))
             {
                 string deleteQuery = $"DELETE FROM Accounts WHERE AccID = '{studID.Text}'";
-
                 OleDbCommand cmd = new OleDbCommand(deleteQuery, conn);
                 conn.Open();
                 cmd.ExecuteNonQuery();
 
                 deleteQuery = $"DELETE FROM Student WHERE StudID = '{studID.Text}'";
-
                 cmd = new OleDbCommand(deleteQuery, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
@@ -130,14 +144,13 @@ namespace IT123P___Course_Management_Systemm
             GenerateGridView();
             LoadData();
         }
+
         protected void studentTable_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = studentTable.SelectedIndex;
 
-            if (selectedIndex == -1)
-            {
-                return;
-            }
+            if (selectedIndex == -1) return;
+
             studID.Text = studentTable.DataKeys[selectedIndex].Values["StudID"].ToString();
             fname.Text = studentTable.DataKeys[selectedIndex].Values["Stud_fname"].ToString();
             lname.Text = studentTable.DataKeys[selectedIndex].Values["Stud_lname"].ToString();

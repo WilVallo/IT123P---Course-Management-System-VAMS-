@@ -4,4 +4,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Course Dashboard</h1>
+
+    <h3>Create Course</h3>
+    
+    <h3>Course Code</h3>
+
+    <h3>Course Title</h3>
+
+    <h3>Course Units</h3>
+
+
 </asp:Content>

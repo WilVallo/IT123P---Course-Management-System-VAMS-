@@ -146,5 +146,10 @@ namespace IT123P___Course_Management_Systemm
 
             delete.Enabled = true;
         }
+
+        protected void delete_Click1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

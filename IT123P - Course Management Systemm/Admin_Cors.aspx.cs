@@ -22,6 +22,8 @@ namespace IT123P___Course_Management_Systemm
         public void LoadData()
         {
             string connstr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");
+            courseGV.DataSource = null;
+            courseGV.DataBind();
 
             using (OleDbConnection conn = new OleDbConnection(connstr))
             {
@@ -47,11 +49,6 @@ namespace IT123P___Course_Management_Systemm
             corsUnits.Text = "";
         }
 
-        public void CourseGenerateGV()
-        {
-
-        }
-
         protected void addCors_Click(object sender, EventArgs e)
         {
             string connstr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");
@@ -74,8 +71,51 @@ namespace IT123P___Course_Management_Systemm
                     cmd.ExecuteNonQuery();
                 }
             }
-
             ClearAddCors();
+        }
+
+        protected void courseGV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string connstr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");
+            courseGV.DataSource = null;
+            courseGV.DataBind();
+
+            using (OleDbConnection conn = new OleDbConnection(connstr))
+            {
+                string retrieve = "select * from Courses";
+
+                conn.Open();
+                OleDbDataAdapter da = new OleDbDataAdapter(retrieve, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                courseGV.DataSource = dt;
+                courseGV.DataBind();
+                conn.Close();
+            }
+        }
+
+        protected void delete_Click(object sender, EventArgs e)
+        {
+            string connstr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");
+
+            using (OleDbConnection conn = new OleDbConnection(connstr))
+            {
+                string deleteQuery = $"DELETE FROM Accounts WHERE AccID = '{corsCode.Text}'";
+
+                OleDbCommand cmd = new OleDbCommand(deleteQuery, conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+
+                deleteQuery = $"DELETE FROM Student WHERE StudID = '{corsCode.Text}'";
+
+                cmd = new OleDbCommand(deleteQuery, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            btnDelete.Enabled = false;
+            ClearAddCors();
+            LoadData();
         }
     }
 }

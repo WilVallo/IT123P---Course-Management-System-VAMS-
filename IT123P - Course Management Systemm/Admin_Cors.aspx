@@ -27,9 +27,18 @@
         </div>
 
         <asp:Button ID="addCors" runat="server" Text="Add" CssClass="btn" OnClick="addCors_Click"/>
-        <asp:Button ID="delCors" runat="server" Text="Delete" CssClass="btn danger" />
+        <asp:Button ID="btnDelete" runat="server" Text="Add" CssClass="btn" OnClick="delete_Click"/>
 
-        <asp:GridView ID="courseGV" runat="server" CssClass="gridview"></asp:GridView>
+        <asp:GridView ID="courseGV" runat="server" CssClass="gridview"
+        AutoGenerateColumns="false" OnSelectedIndexChanged="courseGV_SelectedIndexChanged"
+        DataKeyNames="CourseID" EnableViewState="true">
+            <Columns>
+                <asp:CommandField ShowSelectButton="true" />
+                <asp:BoundField DataField="CourseID" HeaderText="ID" />
+                <asp:BoundField DataField="cName" HeaderText="Course Description" />
+                <asp:BoundField DataField="Units" HeaderText="Units" />
+            </Columns>
+        </asp:GridView>
     </div>
 
     <div class="section">

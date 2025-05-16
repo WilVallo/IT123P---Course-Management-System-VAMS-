@@ -1,80 +1,81 @@
-﻿body {
+﻿/* Container for flex layout */
+.container {
+    display: flex;
+    gap: 40px; /* space between columns */
+    max-width: 1200px;
+    margin: 20px auto;
     font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
-    color: #333;
-    padding: 20px;
 }
 
-.section {
-    background-color: #ffffff;
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+/* Left form section */
+.form-section {
+    flex: 1; /* take up available space */
+    max-width: 400px; /* max width */
 }
 
-h1 {
-    color: #003366;
-    margin-bottom: 15px;
+/* Right table section */
+.table-section {
+    flex: 2; /* take twice the space compared to form */
+    overflow-x: auto; /* horizontal scroll if needed */
 }
 
-h3 {
-    margin: 10px 0 5px;
-    font-size: 16px;
-    color: #333;
+/* Styling for inputs and buttons remains same from previous CSS */
+h1, h3 {
+    color: #2c3e50;
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
-
-.input {
-    width: 300px;
-    padding: 8px;
+input[type="text"], input[type="email"], .aspNetDisabled {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 1em;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #0052cc;
-    color: #fff;
+.aspNetDisabled {
+    background-color: #f0f0f0;
+}
+
+input[type="submit"], input[type="button"], button, .aspNetButton {
+    background-color: #2980b9;
+    color: white;
     border: none;
+    padding: 10px 18px;
+    margin: 10px 5px 0 0;
     border-radius: 4px;
+    font-weight: bold;
     cursor: pointer;
-    margin-right: 10px;
-    margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
-    .btn:hover {
-        background-color: #003d99;
+    input[type="submit"]:hover, input[type="button"]:hover, button:hover, .aspNetButton:hover {
+        background-color: #3498db;
     }
 
-    .btn.danger {
-        background-color: #d9534f;
+    input[type="submit"]:disabled, input[type="button"]:disabled, button:disabled {
+        background-color: #bdc3c7;
+        cursor: not-allowed;
     }
 
-        .btn.danger:hover {
-            background-color: #c9302c;
-        }
-
-.gridview {
-    margin-top: 20px;
-    width: 100%;
+table {
     border-collapse: collapse;
-    font-size: 14px;
+    width: 100%;
+    font-size: 1em;
 }
 
-    .gridview th,
-    .gridview td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-        background-color: #fff;
-    }
+th, td {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
 
-    .gridview th {
-        background-color: #e6f0ff;
-        font-weight: bold;
-    }
+th {
+    background-color: #2980b9;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

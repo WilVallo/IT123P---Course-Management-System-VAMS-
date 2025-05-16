@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Login_Portal.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="IT123P___Course_Management_Systemm.Default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="CSS/default.css" />
-</asp:Content>
 
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="login-container">
         <h1>Login Page</h1>

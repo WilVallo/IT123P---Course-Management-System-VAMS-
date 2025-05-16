@@ -40,6 +40,13 @@ namespace IT123P___Course_Management_Systemm
             }
         }
 
+        public void ClearAddCors()
+        {
+            corsCode.Text = "";
+            corsTitle.Text = "";
+            corsUnits.Text = "";
+        }
+
         public void CourseGenerateGV()
         {
 
@@ -67,6 +74,8 @@ namespace IT123P___Course_Management_Systemm
                     cmd.ExecuteNonQuery();
                 }
             }
+
+            ClearAddCors();
         }
     }
 }

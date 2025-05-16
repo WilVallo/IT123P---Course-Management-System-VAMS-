@@ -11,6 +11,7 @@ namespace IT123P___Course_Management_Systemm
 {
     public partial class Admin_AddStudent : System.Web.UI.Page
     {
+        private Administrator admin;
         protected void Page_Load(object sender, EventArgs e)
         {
             string connstr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Server.MapPath("~/App_Data/CMVMAS.mdb");

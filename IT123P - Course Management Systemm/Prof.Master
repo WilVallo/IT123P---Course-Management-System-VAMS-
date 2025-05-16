@@ -1,0 +1,69 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Prof.Master.cs" Inherits="IT123P___Course_Management_Systemm.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title> Professor Portal </title>
+    <style>
+        body {
+            background-color: #f1dec9;
+        }
+
+        .navbar{
+            width:100%;
+            height:80px;
+            background-color:#a4907c;
+            border-radius: 12px;
+        }
+        .text1 {
+            font-family: 'Arial Rounded MT';
+            font-size: 40px;
+            padding: 20px;
+            display: block;
+        }
+        
+
+        .course-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            background-color: #8d7b68;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .student-table td {
+            padding: 8px;
+        }
+
+        .submit-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #5a5a5a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Panel ID="Panel1" runat="server" CssClass="navbar">
+                <asp:Label ID="welcomeLabel" runat="server" Text="Label" CssClass="text1"></asp:Label>
+            </asp:Panel>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

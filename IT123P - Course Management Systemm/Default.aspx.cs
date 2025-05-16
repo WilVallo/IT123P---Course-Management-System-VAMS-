@@ -23,7 +23,7 @@ namespace IT123P___Course_Management_Systemm
             uname = unameTB.Text.Trim();
             pword = pwordTB.Text.Trim();
 
-            string query = $"select accType from accounts where accID = '{uname}' and password = '{pword}'";
+            string query = $"select accID, accType from accounts where accID = '{uname}' and password = '{pword}'";
 
             OleDbConnection conn = new OleDbConnection(connstr);
 
@@ -45,8 +45,8 @@ namespace IT123P___Course_Management_Systemm
                 }
                 else
                 {
-                    Response.Redirect(".aspx");
                     Session["ID"] = reader["accID"].ToString().Trim();
+                    Response.Redirect("ProfCourses.aspx");
                 }
             }
             conn.Close();

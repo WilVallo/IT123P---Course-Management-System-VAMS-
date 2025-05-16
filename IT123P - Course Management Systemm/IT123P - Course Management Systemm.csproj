@@ -76,6 +76,7 @@
     <Content Include="CSS\adminStuds.css" />
     <Content Include="Default.aspx" />
     <Content Include="Web.config" />
+    <Content Include="ProfCourses.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.Master.cs">
@@ -128,11 +129,26 @@
       <DependentUpon>Login_Portal.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Prof.Master.cs">
+      <DependentUpon>Prof.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prof.Master.designer.cs">
+      <DependentUpon>Prof.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ProfCourses.aspx.cs">
+      <DependentUpon>ProfCourses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProfCourses.aspx.designer.cs">
+      <DependentUpon>ProfCourses.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Login_Portal.Master" />
     <Content Include="Admin.Master" />
     <None Include="packages.config" />
+    <Content Include="Prof.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
